@@ -1,4 +1,3 @@
-import "./RegisterForm.css";
 import register from "../assets/register.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -17,7 +16,7 @@ const RegisterForm = () => {
 
       {/* Right half */}
       <div className="w-full tablet:w-1/2 h-full flex justify-center items-center tablet:h-screen">
-        <div className="w-3/4 h-auto bg-white rounded-xl custom-shadow tablet:mr-auto">
+        <div className="w-3/4 h-auto bg-white rounded-xl ring-2 ring-gray tablet:mr-auto">
           {/* Form */}
           <form className="px-7 py-5 monitor:px-14 monitor:py-8 space-y-3 desktop:space-y-4 monitor:space-y-6">
             <div className="flex justify-between items-center py-4">
