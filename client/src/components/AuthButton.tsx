@@ -9,7 +9,7 @@ interface AuthButtonProps {
 const AuthButton: React.FC<AuthButtonProps> = ({ to, label }) => {
   return (
     <Link to={to}>
-      <div className="flex justify-center monitor:py-3">
+      <div className="flex justify-center pt-3 laptop:pt-4 desktop:pt-5 monitor:pt-6">
         <button
           type="submit"
           className=" w-full bg-purple text-white text-sm laptop:text-base desktop:text-lg py-2 desktop:py-3 monitor:py-4 rounded-lg"

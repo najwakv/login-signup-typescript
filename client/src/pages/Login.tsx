@@ -3,6 +3,7 @@ import loginImage from "../assets/login.png";
 import ImagePanel from "../components/ImagePanel";
 import Heading from "../components/Heading";
 import InputField from "../components/InputField";
+import AuthButton from "../components/AuthButton";
 
 const Login: React.FC = () => {
   return (
@@ -31,19 +32,10 @@ const Login: React.FC = () => {
               showEyeIcon
             />
 
-            <div className="flex justify-center  monitor:py-3">
-              <button
-                type="submit"
-                className=" w-full bg-purple text-white  font-medium text-sm laptop:text-base desktop:text-lg py-2 desktop:py-3 monitor:py-4 rounded-lg"
-              >
-                Sign In
-              </button>
-            </div>
+            <AuthButton to="/otp" label="Sign In" />
 
             <div className="flex justify-center">
-              <button
-                className=" w-full bg-white text-black font-bold border-2 text-sm laptop:text-base desktop:text-lg py-2 desktop:py-3 monitor:py-4 rounded-lg"
-              >
+              <button className=" w-full bg-white text-black font-bold border-2 text-sm laptop:text-base desktop:text-lg py-2 desktop:py-3 monitor:py-4 rounded-lg">
                 Sign Up
               </button>
             </div>

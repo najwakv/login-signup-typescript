@@ -5,6 +5,7 @@ import Heading from "../components/Heading";
 import InputField from "../components/InputField";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import AuthButton from "../components/AuthButton";
 
 library.add(faEye, faEyeSlash);
 
@@ -73,6 +74,7 @@ const Register: React.FC = () => {
               placeholder="Email"
               type="text"
             />
+            <AuthButton to="/" label="Sign Up"/>
           </form>
         </div>
       </div>
