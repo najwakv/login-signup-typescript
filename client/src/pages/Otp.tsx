@@ -1,62 +1,71 @@
 import React, { useEffect, useState } from "react";
+import registerImage from "../assets/register.png";
 import Heading from "../components/Heading";
 import InputField from "../components/InputField";
 import AuthButton from "../components/AuthButton";
+import ImagePanel from "../components/ImagePanel";
 
 const Otp: React.FC = () => {
-  const [timer, setTimer] = useState(60);
-  const [isResending, setIsResending] = useState(false);
+  const [timeRemaining, setTimeRemaining] = useState(60);
+  const [isResendEnabled, setIsResendEnabled] = useState(false);
 
-  // Function to handle OTP input change
-  const handleOTPChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setOTP(event.target.value);
-  };
-
-  // Function to handle OTP submission
-  const handleSubmitOTP = () => {
-    
-  };
-
-  // Function to handle OTP resend
-  const handleResendOTP = () => {
-    // Resend OTP logic here
-    setIsResending(true);
-    // Start timer for OTP expiry
-    setTimeout(() => {
-      setIsResending(false);
-      setTimer(60);
-    }, 60000);
-  };
-
-  // Countdown timer for OTP expiry
+  // Timer to decrease time remaining every second
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
+    const timer = setInterval(() => {
+      setTimeRemaining((prevTime) => prevTime - 1);
     }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+
+    // Clear timer when time reaches 0
+    if (timeRemaining === 0) {
+      clearInterval(timer);
+      setIsResendEnabled(true);
+    }
+
+    return () => clearInterval(timer);
+  }, [timeRemaining]);
+
+  const handleResendClick = () => {
+    setTimeRemaining(60);
+    setIsResendEnabled(false); 
+  };
 
   return (
-    <section className="w-screen h-screen flex justify-center items-center">
-      <div className="w-auto h-auto bg-white rounded-xl ring-2 ring-gray">
-        {/* Form */}
-        <form className="px-7 py-7 monitor:px-14 monitor:py-8 space-y-3 desktop:space-y-4 monitor:space-y-6">
-          <div className="flex justify-between items-center py-4">
-            <Heading title="Enter Otp" />
-          </div>
-          <InputField id="otp" name="otp" placeholder="OTP" type="number" />
-          <AuthButton to="/" label="Submit" />
-          {timer > 0 ? (
-            <p className="text-center">{timer} seconds</p>
-          ) : (
-            <p className="text-center">
-              OTP expired.{" "}
-              <button onClick={handleResendOTP} disabled={isResending}>
-                Resend OTP
-              </button>
-            </p>
-          )}
-        </form>
+    <section className="w-screen h-screen flex">
+      {/* Left half */}
+      <ImagePanel image={registerImage} />
+      {/* Right half */}
+      <div className="w-full tablet:w-1/2 h-full flex justify-center items-center tablet:h-screen">
+        <div className="w-3/4 h-auto bg-white rounded-xl ring-2 ring-gray tablet:mr-auto">
+          {/* Form */}
+          <form className="px-7 py-7 monitor:px-14 monitor:py-8 space-y-3 desktop:space-y-4 monitor:space-y-6">
+            <div className="flex justify-between items-center py-4">
+              <Heading title="Enter OTP" />
+            </div>
+            <InputField
+              id="otp"
+              name="otp"
+              placeholder="Enter Otp"
+              type="text"
+            />
+            <AuthButton to="/" label="Submit" />
+            <button
+              onClick={handleResendClick}
+              disabled={!isResendEnabled}
+              className={`w-full  font-bold border-2 text-sm laptop:text-base desktop:text-lg py-2 desktop:py-3 monitor:py-4 rounded-lg ${
+                isResendEnabled
+                  ? "bg-white text-black  cursor-pointer"
+                  : "bg-white text-gray border-gray cursor-not-allowed"
+              }`}
+            >
+              Resend
+            </button>
+            {!isResendEnabled && (
+              <div className="text-purple text-xs laptop:text-sm desktop:text-base monitor:text-lg  mt-2 text-center font-medium">
+                Did'nt get otp ? Resend in {timeRemaining} seconds
+              </div>
+            )}
+          </form>
+        </div>
       </div>
     </section>
   );
