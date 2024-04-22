@@ -3,8 +3,8 @@ import ImagePanel from "../components/ImagePanel";
 import registerImage from "../assets/register.png";
 import Heading from "../components/Heading";
 import InputField from "../components/InputField";
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import AuthButton from "../components/AuthButton";
 
 library.add(faEye, faEyeSlash);
@@ -52,29 +52,31 @@ const Register: React.FC = () => {
               type="password"
               showEyeIcon
             />
-            <div className="relative">
-              <select
-                id="contactMode"
-                name="contactMode"
-                className="peer h-10 w-full border-b-2 border-gray focus:outline-none text-sm pl-1 "
-              >
-                <option value="email">Email</option>
-                <option value="" disabled selected></option>
-              </select>
+
+            <div className="relative flex justify-end ">
               <label
                 htmlFor="contactMode"
-                className="absolute w-full left-2 top-4 monitor:-top-4 text-sm monitor:font-medium desktop:text-sm monitor:text-base peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray peer-placeholder-shown:top-4 transition-all peer-focus:-top-2 monitor:peer-focus:-top-3 peer-focus:text-purple peer-focus:text-xs text-gray desktop:peer-focus:text-sm monitor:peer-focus:text-base"
+                className="absolute top-5 text-gray text-sm monitor:font-medium border-b-2 border-gray w-full"
               >
-                Contact mode
+                &nbsp;&nbsp;Contact Mode
               </label>
+              <select
+                name="contactMode"
+                id="contactMode"
+                className="h-10 pl-1 focus:outline-none text-sm  z-0"
+              >
+                <option value="email">Email</option>
+                <option disabled selected></option>
+              </select>
             </div>
+
             <InputField
               id="email"
               name="email"
               placeholder="Email"
               type="text"
             />
-            <AuthButton to="/" label="Sign Up"/>
+            <AuthButton to="/" label="Sign Up" />
           </form>
         </div>
       </div>
