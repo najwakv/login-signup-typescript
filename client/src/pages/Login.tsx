@@ -4,8 +4,13 @@ import ImagePanel from "../components/ImagePanel";
 import Heading from "../components/Heading";
 import InputField from "../components/InputField";
 import AuthButton from "../components/AuthButton";
+import ActionButton from "../components/ActionButton";
 
 const Login: React.FC = () => {
+  function handleResendClick(): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <section className="w-screen h-screen flex">
       {/* Left half */}
@@ -35,9 +40,11 @@ const Login: React.FC = () => {
             <AuthButton to="/otp" label="Sign In" />
 
             <div className="flex justify-center">
-              <button className=" w-full bg-white text-black font-bold border-2 text-sm laptop:text-base desktop:text-lg py-2 desktop:py-3 monitor:py-4 rounded-lg">
-                Sign Up
-              </button>
+              <ActionButton
+                onClick={handleResendClick}
+                buttonText="Sign Up"
+                buttonClass={"cursor-pointer"}
+              />
             </div>
           </form>
         </div>

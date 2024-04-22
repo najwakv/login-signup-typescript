@@ -4,6 +4,7 @@ import Heading from "../components/Heading";
 import InputField from "../components/InputField";
 import AuthButton from "../components/AuthButton";
 import ImagePanel from "../components/ImagePanel";
+import ActionButton from "../components/ActionButton";
 
 const Otp: React.FC = () => {
   const [timeRemaining, setTimeRemaining] = useState(60);
@@ -26,7 +27,7 @@ const Otp: React.FC = () => {
 
   const handleResendClick = () => {
     setTimeRemaining(60);
-    setIsResendEnabled(false); 
+    setIsResendEnabled(false);
   };
 
   return (
@@ -48,17 +49,16 @@ const Otp: React.FC = () => {
               type="text"
             />
             <AuthButton to="/" label="Submit" />
-            <button
+            <ActionButton
               onClick={handleResendClick}
-              disabled={!isResendEnabled}
-              className={`w-full  font-bold border-2 text-sm laptop:text-base desktop:text-lg py-2 desktop:py-3 monitor:py-4 rounded-lg ${
+              isEnabled={isResendEnabled}
+              buttonText="Resend"
+              buttonClass={
                 isResendEnabled
-                  ? "bg-white text-black  cursor-pointer"
-                  : "bg-white text-gray border-gray cursor-not-allowed"
-              }`}
-            >
-              Resend
-            </button>
+                  ? "text-black border-black cursor-pointer"
+                  : "text-gray border-gray cursor-not-allowed"
+              }
+            />
             {!isResendEnabled && (
               <div className="text-purple text-xs laptop:text-sm desktop:text-base monitor:text-lg  mt-2 text-center font-medium">
                 Did'nt get otp ? Resend in {timeRemaining} seconds
